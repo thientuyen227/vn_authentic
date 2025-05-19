@@ -1,0 +1,18 @@
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+  }
+  
+  h2, h4 {
+    color: #8B0000; /* đỏ đô */
+  }
+  
+  p {
+    font-size: 1.1rem;
+  }
+  
+  .img-fluid {
+    border: 2px solid #8B0000;
+    border-radius: 8px;
+  }
+  

@@ -1,0 +1,77 @@
+<header class="bg-primary text-white p-3">
+  <script src="../js/header.js"></script>
+  <div class="container">
+    <div class="header-top d-flex justify-content-between align-items-center">
+      <div class="logo">
+        <a
+          href="index.html"
+          class="text-white h4 text-decoration-none"
+          onclick="resetFilters()"
+        >
+          <img
+            src="../image/common/logo.png"
+            alt="SvAuthentic Logo"
+            style="height: 50px"
+          />
+        </a>
+      </div>
+
+      <nav>
+        <ul class="nav" id="main-menu">
+          <li class="nav-item">
+            <a href="index.html" class="nav-link text-white">Trang chủ</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              href="#"
+              class="nav-link dropdown-toggle text-white"
+              data-bs-toggle="dropdown"
+              >Sản phẩm</a
+            >
+            <ul
+              class="dropdown-menu multi-level"
+              aria-labelledby="navbarDropdown"
+              id="product-dropdown"
+            ></ul>
+          </li>
+          <li class="nav-item">
+            <a href="cart.html" class="nav-link text-white">Giỏ hàng</a>
+          </li>
+          <li class="nav-item">
+            <a href="checkout.html" class="nav-link text-white">Thanh toán</a>
+          </li>
+          <li class="nav-item">
+            <a href="order-history.html" class="nav-link text-white"
+              >Lịch sử mua hàng</a
+            >
+          </li>
+          <li class="nav-item">
+            <a href="checkshoes.html" class="nav-link text-white">Check giày</a>
+          </li>
+          <li class="nav-item" id="user-info">
+            <a href="login.html" class="nav-link text-white d-inline"
+              >Đăng nhập</a
+            >
+            |
+            <a href="login.html" class="nav-link text-white d-inline"
+              >Đăng ký</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="search-bar mt-2">
+      <form id="search-form" class="d-flex">
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="Tìm kiếm..."
+          aria-label="Search"
+          id="search-input"
+        />
+        <button class="btn btn-outline-light" type="submit">Tìm</button>
+      </form>
+    </div>
+  </div>
+</header>

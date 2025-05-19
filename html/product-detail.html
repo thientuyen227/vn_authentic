@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chi Tiết Sản Phẩm - VNauthentic</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/product-detail.css" />
+    <link rel="stylesheet" href="../css/footer.css" />
+  </head>
+  <body>
+    <div id="header-container"></div>
+
+    <main class="container my-5">
+      <section id="product-detail" class="product-detail-section">
+        <div class="row">
+          <!-- Cột ảnh (Slider + Thumbnails) -->
+          <div class="col-lg-6 col-md-12 mb-4 text-center">
+            <div class="carousel-container position-relative">
+              <div
+                id="product-carousel"
+                class="carousel slide"
+                data-bs-ride="carousel"
+              >
+                <div class="carousel-inner" id="carousel-images">
+                  <!-- Ảnh sẽ được thêm bằng JS -->
+                </div>
+                <button
+                  class="carousel-control-prev"
+                  type="button"
+                  data-bs-target="#product-carousel"
+                  data-bs-slide="prev"
+                >
+                  <span
+                    class="carousel-control-prev-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button
+                  class="carousel-control-next"
+                  type="button"
+                  data-bs-target="#product-carousel"
+                  data-bs-slide="next"
+                >
+                  <span
+                    class="carousel-control-next-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+            </div>
+            <div
+              class="thumbnail-gallery d-flex justify-content-center mt-3 flex-wrap"
+              id="thumbnail-gallery"
+            >
+              <!-- Thumbnail sẽ được thêm bằng JS -->
+            </div>
+          </div>
+
+          <!-- Cột thông tin sản phẩm -->
+          <div class="col-lg-6 col-md-12">
+            <h1 id="product-name" class="product-title mb-3"></h1>
+            <p id="product-price" class="product-price text-danger mb-3"></p>
+            <p id="product-description" class="product-description mb-4"></p>
+            <div class="mb-4">
+              <label for="product-color" class="form-label fw-medium"
+                >Màu sắc:</label
+              >
+              <select id="product-color" class="form-select custom-select">
+                <!-- Màu sắc sẽ được thêm động -->
+              </select>
+            </div>
+            <div class="mb-4">
+              <label for="product-size" class="form-label fw-medium"
+                >Kích thước:</label
+              >
+              <select id="product-size" class="form-select custom-select">
+                <!-- Kích thước sẽ được thêm động -->
+              </select>
+            </div>
+            <div class="mb-4">
+              <label for="product-quantity" class="form-label fw-medium"
+                >Số lượng:</label
+              >
+              <div class="quantity-input d-flex align-items-center">
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary btn-sm me-2"
+                  onclick="updateQuantity(-1)"
+                >
+                  -
+                </button>
+                <input
+                  type="number"
+                  id="product-quantity"
+                  class="form-control custom-input text-center"
+                  value="1"
+                  min="1"
+                />
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary btn-sm ms-2"
+                  onclick="updateQuantity(1)"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+            <button
+              class="btn btn-primary add-to-cart-detail w-100"
+              onclick="addToCartDetail()"
+            >
+              Thêm vào giỏ hàng
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script src="../vendor/jquery/jquery-3.7.1.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../js/menu.js"></script>
+    <script src="../js/product-detail.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/header.js"></script>
+    <script>
+      // Hàm điều chỉnh số lượng
+      function updateQuantity(change) {
+        const quantityInput = document.getElementById("product-quantity");
+        let quantity = parseInt(quantityInput.value) || 1;
+        quantity = Math.max(1, quantity + change);
+        quantityInput.value = quantity;
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng nhập / Đăng ký - VNauthentic</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link href="../css/login.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Toast Container -->
+    <div
+      aria-live="polite"
+      aria-atomic="true"
+      class="position-fixed top-0 end-0 p-3"
+      style="z-index: 1100"
+    >
+      <div
+        id="toast"
+        class="toast align-items-center text-white bg-primary border-0"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <div class="d-flex">
+          <div class="toast-body"></div>
+          <button
+            type="button"
+            class="btn-close btn-close-white me-2 m-auto"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="auth-container">
+      <!-- Login Form -->
+      <div id="login-form">
+        <h2 class="text-center mb-4">Đăng nhập</h2>
+        <div class="mb-3">
+          <input
+            id="login-email"
+            type="email"
+            class="form-control"
+            placeholder="Email"
+            required
+          />
+          <div class="invalid-feedback"></div>
+        </div>
+        <div class="mb-3 position-relative">
+          <input
+            id="login-password"
+            type="password"
+            class="form-control"
+            placeholder="Mật khẩu"
+            required
+          />
+          <span
+            class="toggle-password position-absolute end-0 top-50 translate-middle-y me-3"
+            role="button"
+          >
+            <i class="fas fa-eye"></i>
+          </span>
+          <div class="invalid-feedback"></div>
+        </div>
+        <button onclick="login()" class="btn btn-primary w-100 mb-3">
+          Đăng nhập
+        </button>
+        <p class="text-center">
+          <span class="toggle-form" onclick="showForgotPassword()"
+            >Quên mật khẩu?</span
+          >
+        </p>
+        <hr />
+        <button
+          onclick="socialLogin('Google')"
+          class="btn btn-danger btn-social"
+        >
+          <svg class="me-2" width="20" height="20" viewBox="0 0 24 24">
+            <path
+              fill="currentColor"
+              d="M12.24 10.667V14h-3.573a4.667 4.667 0 0 1 4.573-3.333c1.093 0 2.027.373 2.76 1l2.307-2.307A7.96 7.96 0 0 0 12.24 6c-4.507 0-8.24 3.573-8.24 8s3.733 8 8.24 8c4.053 0 7.467-2.987 8.067-6.933h-4.267v-2.667h7.333c.133.733.2 1.467.2 2.2 0 6.667-5.373 12-12 12S0 20.667 0 14s5.373-12 12-12c2.947 0 5.573 1.067 7.667 2.8l-2.667 2.667a4.678 4.678 0 0 1-4.76-2.8z"
+            />
+          </svg>
+          Đăng nhập với Google
+        </button>
+        <button
+          onclick="socialLogin('Facebook')"
+          class="btn btn-primary btn-social"
+        >
+          <svg class="me-2" width="20" height="20" viewBox="0 0 24 24">
+            <path
+              fill="currentColor"
+              d="M22 12.07C22 6.505 17.495 2 11.93 2S1.86 6.505 1.86 12.07c0 5.023 3.657 9.184 8.438 10.007v-7.073H7.716v-2.934h2.582V9.737c0-2.55 1.517-3.957 3.83-3.957 1.108 0 2.266.198 2.266.198v2.492h-1.276c-1.258 0-1.65.784-1.65 1.59v1.91h2.808l-.448 2.934h-2.36v7.073C18.343 21.254 22 17.093 22 12.07z"
+            />
+          </svg>
+          Đăng nhập với Facebook
+        </button>
+        <p class="text-center mt-3">
+          Chưa có tài khoản?
+          <span class="toggle-form" onclick="showRegister()">Đăng ký</span>
+        </p>
+      </div>
+
+      <!-- Register Form -->
+      <div id="register-form" class="d-none">
+        <h2 class="text-center mb-4">Đăng ký</h2>
+        <div class="mb-3">
+          <input
+            id="register-name"
+            type="text"
+            class="form-control"
+            placeholder="Họ và tên"
+            required
+          />
+          <div class="invalid-feedback"></div>
+        </div>
+        <div class="mb-3">
+          <input
+            id="register-email"
+            type="email"
+            class="form-control"
+            placeholder="Email"
+            required
+          />
+          <div class="invalid-feedback"></div>
+        </div>
+        <div class="mb-3">
+          <input
+            id="register-address"
+            type="text"
+            class="form-control"
+            placeholder="Địa chỉ"
+            required
+          />
+          <div class="invalid-feedback"></div>
+        </div>
+        <div class="mb-3 position-relative">
+          <input
+            id="register-password"
+            type="password"
+            class="form-control"
+            placeholder="Mật khẩu"
+            required
+          />
+          <span
+            class="toggle-password position-absolute end-0 top-50 translate-middle-y me-3"
+            role="button"
+          >
+            <i class="fas fa-eye"></i>
+          </span>
+          <div class="invalid-feedback"></div>
+        </div>
+        <div class="mb-3 position-relative">
+          <input
+            id="confirm-password"
+            type="password"
+            class="form-control"
+            placeholder="Xác nhận mật khẩu"
+            required
+          />
+          <span
+            class="toggle-password position-absolute end-0 top-50 translate-middle-y me-3"
+            role="button"
+          >
+            <i class="fas fa-eye"></i>
+          </span>
+          <div class="invalid-feedback"></div>
+        </div>
+        <button onclick="register()" class="btn btn-primary w-100 mb-3">
+          Đăng ký
+        </button>
+        <hr />
+        <button
+          onclick="socialLogin('Google')"
+          class="btn btn-danger btn-social"
+        >
+          <svg class="me-2" width="20" height="20" viewBox="0 0 24 24">
+            <path
+              fill="currentColor"
+              d="M12.24 10.667V14h-3.573a4.667 4.667 0 0 1 4.573-3.333c1.093 0 2.027.373 2.76 1l2.307-2.307A7.96 7.96 0 0 0 12.24 6c-4.507 0-8.24 3.573-8.24 8s3.733 8 8.24 8c4.053 0 7.467-2.987 8.067-6.933h-4.267v-2.667h7.333c.133.733.2 1.467.2 2.2 0 6.667-5.373 12-12 12S0 20.667 0 14s5.373-12 12-12c2.947 0 5.573 1.067 7.667 2.8l-2.667 2.667a4.678 4.678 0 0 1-4.76-2.8z"
+            />
+          </svg>
+          Đăng ký với Google
+        </button>
+        <button
+          onclick="socialLogin('Facebook')"
+          class="btn btn-primary btn-social"
+        >
+          <svg class="me-2" width="20" height="20" viewBox="0 0 24 24">
+            <path
+              fill="currentColor"
+              d="M22 12.07C22 6.505 17.495 2 11.93 2S1.86 6.505 1.86 12.07c0 5.023 3.657 9.184 8.438 10.007v-7.073H7.716v-2.934h2.582V9.737c0-2.55 1.517-3.957 3.83-3.957 1.108 0 2.266.198 2.266.198v2.492h-1.276c-1.258 0-1.65.784-1.65 1.59v1.91h2.808l-.448 2.934h-2.36v7.073C18.343 21.254 22 17.093 22 12.07z"
+            />
+          </svg>
+          Đăng ký với Facebook
+        </button>
+        <p class="text-center mt-3">
+          Đã có tài khoản?
+          <span class="toggle-form" onclick="showLogin()">Đăng nhập</span>
+        </p>
+      </div>
+
+      <!-- Forgot Password Form -->
+      <div id="forgot-password-form" class="d-none">
+        <h2 class="text-center mb-4">Quên mật khẩu</h2>
+        <div class="mb-3">
+          <input
+            id="forgot-email"
+            type="email"
+            class="form-control"
+            placeholder="Email"
+            required
+          />
+          <div class="invalid-feedback"></div>
+        </div>
+        <button onclick="resetPassword()" class="btn btn-primary w-100 mb-3">
+          Gửi yêu cầu đặt lại
+        </button>
+        <p class="text-center">
+          <span class="toggle-form" onclick="showLogin()"
+            >Quay lại đăng nhập</span
+          >
+        </p>
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <!-- CryptoJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <!-- Login JS -->
+    <script src="../js/login.js"></script>
+  </body>
+</html>

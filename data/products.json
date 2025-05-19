@@ -1,0 +1,221 @@
+[{
+        "id": 1,
+        "name": "Nike Pegasus 41",
+        "category": "Running",
+        "brand": "Nike",
+        "model": "Pegasus 41",
+        "price": "2.100.000 VNĐ",
+        "description": "Giày chạy bộ êm ái, phù hợp cho mọi cự ly.",
+        "image": "../image/running/nike/pegasus-41/product1.jpg",
+        "images": [
+            "../image/running/nike/pegasus-41/product1.jpg",
+            "../image/running/nike/pegasus-41/product2.jpg",
+            "../image/running/nike/pegasus-41/product3.jpg",
+            "../image/running/nike/pegasus-41/product4.jpg",
+            "../image/running/nike/pegasus-41/product5.jpg",
+            "../image/running/nike/pegasus-41/product6.jpg"
+        ],
+        "colors": ["blue", "red", "black"],
+        "sizes": [39, 40, 41, 42, 43]
+    },
+    {
+        "id": 2,
+        "name": "Nike Vaporfly 4",
+        "category": "Running",
+        "brand": "Nike",
+        "model": "Vaporfly 4",
+        "price": "4.100.000 VNĐ",
+        "description": "Giày chạy bộ cao cấp, tối ưu cho tốc độ.",
+        "image": "../image/running/nike/vaporfly-4/product1.jpg",
+        "images": [
+            "../image/running/nike/vaporfly-4/product1.jpg",
+            "../image/running/nike/vaporfly-4/product2.jpg",
+            "../image/running/nike/vaporfly-4/product3.jpg",
+            "../image/running/nike/vaporfly-4/product4.jpg",
+            "../image/running/nike/vaporfly-4/product5.jpg",
+            "../image/running/nike/vaporfly-4/product6.jpg"
+        ],
+        "colors": ["yellow", "green"],
+        "sizes": [40, 41, 42]
+    },
+    {
+        "id": 3,
+        "name": "Asics Kayano 30",
+        "category": "Running",
+        "brand": "Asics",
+        "model": "Kayano 30",
+        "price": "3.100.000 VNĐ",
+        "description": "Giày chạy bộ ổn định, hỗ trợ chống lật cổ chân.",
+        "image": "../image/running/asics/kayano-30/product1.jpg",
+        "images": [
+            "../image/running/asics/kayano-30/product1.jpg",
+            "../image/running/asics/kayano-30/product2.jpg",
+            "../image/running/asics/kayano-30/product3.jpg",
+            "../image/running/asics/kayano-30/product4.jpg",
+            "../image/running/asics/kayano-30/product5.jpg",
+            "../image/running/asics/kayano-30/product6.jpg"
+        ],
+        "colors": ["white", "silver"],
+        "sizes": [38, 39, 40, 41, 42]
+    },
+    {
+        "id": 4,
+        "name": "Asics GT-2000 12",
+        "category": "Running",
+        "brand": "Asics",
+        "model": "GT-2000 12",
+        "price": "2.500.000 VNĐ",
+        "description": "Giày chạy bộ đa năng, phù hợp cho tập luyện hàng ngày.",
+        "image": "../image/running/asics/gt2000-12/product1.jpg",
+        "images": [
+            "../image/running/asics/gt2000-12/product1.jpg",
+            "../image/running/asics/gt2000-12/product2.jpg",
+            "../image/running/asics/gt2000-12/product3.jpg",
+            "../image/running/asics/gt2000-12/product4.jpg",
+            "../image/running/asics/gt2000-12/product5.jpg",
+            "../image/running/asics/gt2000-12/product6.jpg"
+        ],
+        "colors": ["black", "orange"],
+        "sizes": [39, 40, 41, 42]
+    },
+    {
+        "id": 5,
+        "name": "Nike Vapor Pro 12",
+        "category": "Tennis - Pickleball",
+        "brand": "Nike",
+        "model": "Vapor Pro 12",
+        "price": "3.100.000 VNĐ",
+        "description": "Giày tennis tốc độ, linh hoạt trên sân.",
+        "image": "../image/tennis-pickleball/nike/vapor-pro-12/product1.jpg",
+        "images": [
+            "../image/tennis-pickleball/nike/vapor-pro-12/product1.jpg",
+            "../image/tennis-pickleball/nike/vapor-pro-12/product2.jpg",
+            "../image/tennis-pickleball/nike/vapor-pro-12/product3.jpg",
+            "../image/tennis-pickleball/nike/vapor-pro-12/product4.jpg",
+            "../image/tennis-pickleball/nike/vapor-pro-12/product5.jpg",
+            "../image/tennis-pickleball/nike/vapor-pro-12/product6.jpg"
+        ],
+        "colors": ["blue", "white"],
+        "sizes": [40, 41, 42, 43]
+    },
+    {
+        "id": 6,
+        "name": "Nike Vapor Cage 4 Rafa",
+        "category": "Tennis - Pickleball",
+        "brand": "Nike",
+        "model": "Vapor Cage 4 Rafa",
+        "price": "2.700.000 VNĐ",
+        "description": "Giày tennis bền bỉ, hỗ trợ tốt cho những pha bóng mạnh mẽ.",
+        "image": "../image/tennis-pickleball/nike/vapor-cage-4-rafa/product1.jpg",
+        "images": [
+            "../image/tennis-pickleball/nike/vapor-cage-4-rafa/product1.jpg",
+            "../image/tennis-pickleball/nike/vapor-cage-4-rafa/product2.jpg",
+            "../image/tennis-pickleball/nike/vapor-cage-4-rafa/product3.jpg",
+            "../image/tennis-pickleball/nike/vapor-cage-4-rafa/product4.jpg",
+            "../image/tennis-pickleball/nike/vapor-cage-4-rafa/product5.jpg",
+            "../image/tennis-pickleball/nike/vapor-cage-4-rafa/product6.jpg"
+        ],
+        "colors": ["black", "red"],
+        "sizes": [41, 42, 43]
+    },
+    {
+        "id": 7,
+        "name": "Asics Court FF 3",
+        "category": "Tennis - Pickleball",
+        "brand": "Asics",
+        "model": "Court FF 3",
+        "price": "3.100.000 VNĐ",
+        "description": "Giày tennis cao cấp, mang lại sự ổn định và tốc độ.",
+        "image": "../image/tennis-pickleball/asics/court-ff3/product1.jpg",
+        "images": [
+            "../image/tennis-pickleball/asics/court-ff3/product1.jpg",
+            "../image/tennis-pickleball/asics/court-ff3/product2.jpg",
+            "../image/tennis-pickleball/asics/court-ff3/product3.jpg",
+            "../image/tennis-pickleball/asics/court-ff3/product4.jpg",
+            "../image/tennis-pickleball/asics/court-ff3/product5.jpg",
+            "../image/tennis-pickleball/asics/court-ff3/product6.jpg"
+        ],
+        "colors": ["white", "blue"],
+        "sizes": [39, 40, 41, 42]
+    },
+    {
+        "id": 8,
+        "name": "Asics Gel Resolution 9",
+        "category": "Tennis - Pickleball",
+        "brand": "Asics",
+        "model": "Gel Resolution 9",
+        "price": "3.300.000 VNĐ",
+        "description": "Giày tennis êm ái, hỗ trợ tốt cho di chuyển linh hoạt.",
+        "image": "../image/tennis-pickleball/asics/gel-resolution-x/product1.jpg",
+        "images": [
+            "../image/pd/asics/gelres9/gr1.jpg",
+            "../image/pd/asics/gelres9/gr2.jpg",
+            "../image/pd/asics/gelres9/gr3.jpg",
+            "../image/pd/asics/gelres9/gr4.jpg",
+            "../image/pd/asics/gelres9/gr5.jpg",
+            "../image/pd/asics/gelres9/gr6.jpg"
+        ],
+        "colors": ["yellow", "black"],
+        "sizes": [40, 41, 42]
+    },
+    {
+        "id": 9,
+        "name": "Adidas Adizero Cybersonic",
+        "category": "Tennis - Pickleball",
+        "brand": "Adidas",
+        "model": "Adizero Cybersonic",
+        "price": "2.150.000 VNĐ",
+        "description": "Giày tennis tốc độ, thiết kế hiện đại.",
+        "image": "../image/tennis-pickleball/adidas/adizero-cybersonic/product1.jpg",
+        "images": [
+            "../image/tennis-pickleball/adidas/adizero-cybersonic/product1.jpg",
+            "../image/tennis-pickleball/adidas/adizero-cybersonic/product2.jpg",
+            "../image/tennis-pickleball/adidas/adizero-cybersonic/product3.jpg",
+            "../image/tennis-pickleball/adidas/adizero-cybersonic/product4.jpg",
+            "../image/tennis-pickleball/adidas/adizero-cybersonic/product5.jpg",
+            "../image/tennis-pickleball/adidas/adizero-cybersonic/product6.jpg"
+        ],
+        "colors": ["white", "green"],
+        "sizes": [40, 41, 42, 43]
+    },
+    {
+        "id": 10,
+        "name": "Mizuno Wave Enforce",
+        "category": "Tennis - Pickleball",
+        "brand": "Mizuno",
+        "model": "Wave Enforce",
+        "price": "2.700.000 VNĐ",
+        "description": "Giày tennis ổn định, hỗ trợ tốt cho những cú đánh mạnh.",
+        "image": "../image/tennis-pickleball/mizuno/wave-enforce/product1.jpg",
+        "images": [
+            "../image/tennis-pickleball/mizuno/wave-enforce/product1.jpg",
+            "../image/tennis-pickleball/mizuno/wave-enforce/product2.jpg",
+            "../image/tennis-pickleball/mizuno/wave-enforce/product3.jpg",
+            "../image/tennis-pickleball/mizuno/wave-enforce/product4.jpg",
+            "../image/tennis-pickleball/mizuno/wave-enforce/product5.jpg",
+            "../image/tennis-pickleball/mizuno/wave-enforce/product6.jpg"
+        ],
+        "colors": ["blue", "orange"],
+        "sizes": [40, 41, 42]
+    },
+    {
+        "id": 11,
+        "name": "Mizuno Exceed Tour 6",
+        "category": "Tennis - Pickleball",
+        "brand": "Mizuno",
+        "model": "Exceed Tour 6",
+        "price": "3.100.000 VNĐ",
+        "description": "Giày tennis thoải mái, phù hợp cho những trận đấu dài.",
+        "image": "../image/tennis-pickleball/mizuno/exceed-tour-6/product1.jpg",
+        "images": [
+            "../image/tennis-pickleball/mizuno/exceed-tour-6/product1.jpg",
+            "../image/tennis-pickleball/mizuno/exceed-tour-6/product2.jpg",
+            "../image/tennis-pickleball/mizuno/exceed-tour-6/product3.jpg",
+            "../image/tennis-pickleball/mizuno/exceed-tour-6/product4.jpg",
+            "../image/tennis-pickleball/mizuno/exceed-tour-6/product5.jpg",
+            "../image/tennis-pickleball/mizuno/exceed-tour-6/product6.jpg"
+        ],
+        "colors": ["white", "red"],
+        "sizes": [39, 40, 41, 42]
+    }
+]

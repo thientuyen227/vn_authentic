@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Thanh toán - VNauthentic</title>
+
+    <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/checkout.css" />
+    <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/footer.css" />
+  </head>
+  <body>
+    <div id="header-container"></div>
+
+    <div class="container mt-5" style="max-width: 600px">
+      <h2 class="mb-4 text-center">Thông tin thanh toán</h2>
+
+      <form id="checkout-form" novalidate>
+        <div class="mb-3">
+          <label for="fullname" class="form-label">Họ tên</label>
+          <input type="text" class="form-control" id="fullname" required />
+          <div class="invalid-feedback">Vui lòng nhập họ tên.</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="phone" class="form-label">Số điện thoại (10 số)</label>
+          <input
+            type="tel"
+            class="form-control"
+            id="phone"
+            pattern="[0-9]{10}"
+            placeholder="Nhập 10 số (VD: 0901234567)"
+            required
+          />
+          <div class="invalid-feedback">
+            Vui lòng nhập số điện thoại đúng 10 số (VD: 0901234567).
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="address" class="form-label">Địa chỉ</label>
+          <textarea
+            class="form-control"
+            id="address"
+            rows="2"
+            required
+          ></textarea>
+          <div class="invalid-feedback">Vui lòng nhập địa chỉ.</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="note" class="form-label">Ghi chú (tuỳ chọn)</label>
+          <textarea class="form-control" id="note" rows="2"></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Hình thức thanh toán</label>
+          <select class="form-select" id="payment-method" required>
+            <option value="" selected disabled>Chọn hình thức</option>
+            <option value="cod">Thanh toán khi nhận hàng (COD)</option>
+            <option value="transfer">Thanh toán chuyển khoản</option>
+          </select>
+          <div class="invalid-feedback">
+            Vui lòng chọn hình thức thanh toán.
+          </div>
+        </div>
+
+        <div id="qr-code" class="mb-3 text-center" style="display: none">
+          <p>Quét mã QR để chuyển khoản:</p>
+          <img
+            src="../image/payment/qr-transfer.png"
+            alt="Mã QR chuyển khoản"
+            style="max-width: 200px"
+          />
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">
+          Xác nhận đơn hàng
+        </button>
+      </form>
+
+      <div id="message" class="mt-3 text-center"></div>
+      <div id="cart-summary"></div>
+    </div>
+
+    <div id="footer-container"></div>
+
+    <script src="../vendor/jquery/jquery-3.7.1.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../js/auth.js"></script>
+    <script>
+      $(function () {
+        $("#header-container").load("header.html");
+        $("#footer-container").load("footer.html");
+      });
+    </script>
+    <script src="../js/checkout.js"></script>
+  </body>
+</html>

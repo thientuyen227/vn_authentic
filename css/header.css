@@ -1,0 +1,186 @@
+header {
+  background-color: #1e3a8a;
+  padding: 1rem 0;
+}
+
+header .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo a {
+  text-decoration: none;
+}
+
+.logo img {
+  height: 40px;
+}
+
+#main-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+#main-menu > li {
+  margin-left: 1rem;
+}
+
+#main-menu > li:first-child {
+  margin-left: 0;
+}
+
+#main-menu > li > a {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 0.5rem 0;
+  display: block;
+}
+
+#main-menu > li > a:hover,
+#main-menu li.dropdown-submenu > a:hover {
+  color: #f8f9fa;
+}
+
+.dropdown-menu {
+  background-color: #ffffff;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 0;
+}
+
+.dropdown-item {
+  color: #000;
+  padding: 0.5rem 1rem;
+  display: block;
+  text-decoration: none;
+  font-weight: normal;
+}
+
+.dropdown-item:hover {
+  background-color: #f8f9fa;
+  color: #000;
+}
+
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu > a::after {
+  content: "\f0da";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  float: right;
+  margin-top: 0.25em;
+  color: #000;
+}
+
+.dropdown-submenu .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-left: -0.1px;
+  border-radius: 0 0.25rem 0.25rem 0.25rem;
+}
+
+/* Hiển thị dropdown khi hover */
+
+.dropdown:hover > .dropdown-menu {
+  display: block;
+}
+
+.dropdown-submenu:hover > .dropdown-menu {
+  display: block;
+}
+
+.search-bar {
+  width: 100%;
+}
+
+#search-form {
+  display: flex;
+}
+
+#search-form .form-control {
+  border-radius: 5px 0 0 5px;
+  border: none;
+  flex-grow: 1;
+}
+
+#search-form .btn-outline-light {
+  border-radius: 0 5px 5px 0;
+  border: none;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+#search-form .btn-outline-light:hover {
+  background-color: #e9ecef;
+}
+
+/* Responsive for Header */
+
+@media (max-width: 768px) {
+  header .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .header-top {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+  nav {
+    width: 100%;
+  }
+  #main-menu {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  #main-menu > li {
+    margin-left: 0;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .dropdown-submenu .dropdown-menu {
+    position: static;
+    width: 100%;
+    margin-left: 0;
+    border-radius: 0.25rem;
+    box-shadow: none;
+  }
+  .dropdown-submenu > a::after {
+    display: none;
+  }
+  .search-bar {
+    margin-top: 1rem;
+  }
+}
+
+#user-info {
+  font-size: 1.5rem;
+}
+
+#logout-btn {
+  text-decoration: none;
+  color: #6ae413;
+}
+
+#logout-btn:hover {
+  text-decoration: underline;
+}
+
+.nav-link:hover {
+  color: #ffcc00 !important;
+  transition: color 0.3s;
+}
