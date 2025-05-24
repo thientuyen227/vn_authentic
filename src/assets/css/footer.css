@@ -1,0 +1,92 @@
+footer {
+    background-color: #1E3A8A;
+    color: white;
+    padding: 3rem 0; /* Tăng padding cho thoáng */
+}
+
+footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+footer h5 {
+    color: white;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 0.75rem;
+    margin-bottom: 1.25rem;
+    font-size: 1.1rem; /* Giảm kích thước font cho cân đối */
+    font-weight: bold;
+}
+
+footer a.text-white,
+footer p {
+    color: white;
+    text-decoration: none;
+    line-height: 1.7; /* Tăng khoảng cách dòng */
+    font-size: 0.9rem; /* Giảm kích thước font chữ nội dung */
+}
+
+footer a.text-white:hover {
+    color: #f8f9fa;
+}
+
+footer .list-unstyled {
+    padding-left: 0;
+    list-style: none;
+}
+
+footer .list-unstyled li {
+    margin-bottom: 0.6rem;
+}
+
+footer .social-icons a {
+    margin-right: 15px;
+    font-size: 1.3rem; /* Giảm kích thước icon */
+}
+
+footer hr.text-white {
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+footer p.text-center {
+    font-size: 0.8rem;
+    margin-top: 0;
+}
+
+/* Style cho logo */
+footer .logo img {
+    max-width: 150px; /* Điều chỉnh kích thước logo */
+    height: auto;
+}
+
+/* Responsive for Footer */
+@media (max-width: 768px) {
+    footer .row {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    footer .col-md-3 {
+        margin-bottom: 2rem;
+    }
+
+    footer .col-md-3:last-child {
+        margin-bottom: 0;
+    }
+
+    footer .logo {
+        margin-bottom: 1.5rem;
+    }
+
+    .social-icons {
+        margin-top: 1rem;
+        justify-content: center; /* Căn giữa icon trên mobile */
+    }
+
+    .social-icons a {
+        margin: 0 10px;
+    }
+}

@@ -1,0 +1,55 @@
+# Node modules
+node_modules/
+**/node_modules/
+
+# Build outputs
+build/
+dist/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# dotenv files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Testing
+coverage/
+*.lcov
+
+# React specific (if using CRA)
+public/static/
+public/index.html
+*.log
+*.cache
+*.tsbuildinfo
+
+# Optional: if using storybook
+storybook-static/
+
+# Optional: if using TypeScript
+*.tsbuildinfo
