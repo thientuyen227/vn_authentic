@@ -1,77 +1,80 @@
 <!DOCTYPE html>
 <html lang="vi">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>VNauthentic - Website Bán Giày</title>
 
-    <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../css/header.css" />
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/footer.css" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VNauthentic - Website Bán Giày</title>
 
-  <body>
-    <div id="header-container"></div>
+  <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../css/header.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/footer.css" />
+</head>
 
-    <section class="banner my-4">
-      <div class="container">
-        <img
-          src="../image/common/bia.png"
-          alt="Banner SvAuthentic"
-          class="img-fluid rounded"
-        />
-      </div>
+<body>
+  <div id="header-container"></div>
+
+  <section class="banner my-4">
+    <div class="container">
+      <img src="../image/common/bia.png" alt="Banner SvAuthentic" class="img-fluid rounded" />
+    </div>
+  </section>
+
+  <main class="container">
+    <div class="filter-clear">
+      <button class="btn btn-secondary" onclick="clearFilter()">
+        Xóa bộ lọc
+      </button>
+      <button class="btn btn-danger ms-2" onclick="clearFilter()">
+        Reset tất cả
+      </button>
+    </div>
+    <div class="price-filter">
+      <label for="min-price">Giá từ:</label>
+      <input type="number" id="min-price" class="form-control d-inline-block" placeholder="Đang tải..." />
+      <label for="max-price">đến:</label>
+      <input type="number" id="max-price" class="form-control d-inline-block" placeholder="Đang tải..." />
+      <button class="btn btn-primary" onclick="applyPriceFilter()">
+        Lọc giá
+      </button>
+      <button class="btn btn-secondary" onclick="clearPriceFilter()">
+        Xóa bộ lọc giá
+      </button>
+    </div>
+    <section id="running-products" class="product-section">
+      <h2 class="section-title">Running</h2>
+      <div class="product-grid running-product-grid"></div>
     </section>
 
-    <main class="container">
-      <div class="filter-clear">
-        <button class="btn btn-secondary" onclick="clearFilter()">
-          Xóa bộ lọc
-        </button>
-        <button class="btn btn-danger ms-2" onclick="clearFilter()">
-          Reset tất cả
-        </button>
-      </div>
-      <div class="price-filter">
-        <label for="min-price">Giá từ:</label>
-        <input
-          type="number"
-          id="min-price"
-          class="form-control d-inline-block"
-          placeholder="Đang tải..."
-        />
-        <label for="max-price">đến:</label>
-        <input
-          type="number"
-          id="max-price"
-          class="form-control d-inline-block"
-          placeholder="Đang tải..."
-        />
-        <button class="btn btn-primary" onclick="applyPriceFilter()">
-          Lọc giá
-        </button>
-        <button class="btn btn-secondary" onclick="clearPriceFilter()">
-          Xóa bộ lọc giá
-        </button>
-      </div>
-      <section id="running-products" class="product-section">
-        <h2 class="section-title">Running</h2>
-        <div class="product-grid running-product-grid"></div>
-      </section>
+    <section id="tennis-products" class="product-section">
+      <h2 class="section-title">Tennis - Pickleball</h2>
+      <div class="product-grid tennis-product-grid"></div>
+    </section>
+  </main>
 
-      <section id="tennis-products" class="product-section">
-        <h2 class="section-title">Tennis - Pickleball</h2>
-        <div class="product-grid tennis-product-grid"></div>
-      </section>
-    </main>
+  <div id="footer-container"></div>
 
-    <div id="footer-container"></div>
+  <script src="../vendor/jquery/jquery-3.7.1.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../js/menu.js"></script>
+  <script src="../js/product-display.js"></script>
+  <script src="../js/auth.js"></script>
 
-    <script src="../vendor/jquery/jquery-3.7.1.min.js"></script>
-    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../js/menu.js"></script>
-    <script src="../js/product-display.js"></script>
-    <script src="../js/auth.js"></script>
-  </body>
+  <script>
+    async function testPing() {
+      try {
+        const res = await fetch('http://localhost:3000/api/ping');
+        const data = await res.json();
+        console.log('Ping response:', data);
+      } catch (e) {
+        console.error('Error ping:', e);
+      }
+    }
+    window.addEventListener('DOMContentLoaded', testPing);
+  </script>
+
+
+</body>
+
 </html>

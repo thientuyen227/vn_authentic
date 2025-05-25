@@ -1,19 +1,26 @@
-$(document).ready(function() {
+$(document).ready(function () {
     let products = [];
 
     // 1. Load sản phẩm từ JSON
     function loadProducts() {
-        $.getJSON("../data/products.json", function(data) {
-            products = data;
-            displayProducts();
-            console.log("Sản phẩm đã tải:", products); // Debug
-        }).fail(function(jqXHR, textStatus, errorThrown) {
-            console.error("Lỗi khi tải products.json:", textStatus, errorThrown);
-            $(".running-product-grid, .tennis-product-grid").html(
-                "<p class='text-danger'>Không tải được dữ liệu sản phẩm.</p>"
-            );
+        $.ajax({
+            url: "https://vn-authentic-be.onrender.com/api/products",  // Đổi thành API của bạn
+            method: "GET",
+            dataType: "json",
+            success: function (data) {
+                products = data;
+                displayProducts();
+                console.log("Sản phẩm đã tải từ API:", products); // Debug
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error("Lỗi khi tải dữ liệu sản phẩm từ API:", textStatus, errorThrown);
+                $(".running-product-grid, .tennis-product-grid").html(
+                    "<p class='text-danger'>Không tải được dữ liệu sản phẩm từ API.</p>"
+                );
+            }
         });
     }
+
 
     // 2. Parse "2.100.000 VNĐ" -> 2100000
     function parsePrice(str) {
@@ -28,9 +35,8 @@ $(document).ready(function() {
             const opts = product.colors
                 .map(
                     (c) =>
-                    `<option value="${c}">${
-              c.charAt(0).toUpperCase() + c.slice(1)
-            }</option>`
+                        `<option value="${c}">${c.charAt(0).toUpperCase() + c.slice(1)
+                        }</option>`
                 )
                 .join("");
             colorSelect = `
@@ -58,15 +64,14 @@ $(document).ready(function() {
         return `
       <div class="card product mb-3" data-id="${product.id}">
         <a href="product-detail.html?id=${product.id}">
-          <img src="${
-            product.image
-          }" class="card-img-top" alt="${product.name}">
+          <img src="${product.image
+            }" class="card-img-top" alt="${product.name}">
         </a>
         <div class="card-body">
           <h5 class="card-title product-name">${product.name}</h5>
           <p class="card-text product-price" data-price="${parsePrice(
-            product.price
-          )}">
+                product.price
+            )}">
             ${product.price}
           </p>
           <p class="card-text small text-truncate">${product.description}</p>
@@ -120,9 +125,9 @@ $(document).ready(function() {
                 // Nếu từ khóa không thuộc danh mục hoặc thương hiệu, tìm kiếm trong tên, thương hiệu, danh mục
                 filteredProducts = filteredProducts.filter(
                     (p) =>
-                    p.name.toLowerCase().includes(filterKeyword) ||
-                    p.brand.toLowerCase().includes(filterKeyword) ||
-                    p.category.toLowerCase().includes(filterKeyword)
+                        p.name.toLowerCase().includes(filterKeyword) ||
+                        p.brand.toLowerCase().includes(filterKeyword) ||
+                        p.category.toLowerCase().includes(filterKeyword)
                 );
             }
         }
@@ -141,11 +146,9 @@ $(document).ready(function() {
         $("main.container .filter-info").remove();
         if (minPrice || maxPrice) {
             const filterInfo = $(
-                `<div class="filter-info">Đang lọc giá từ ${
-          minPrice ? minPrice.toLocaleString("vi-VN") : 0
-        } đến ${
-          maxPrice ? maxPrice.toLocaleString("vi-VN") : "vô cực"
-        } VNĐ</div>`
+                `<div class="filter-info">Đang lọc giá từ ${minPrice ? minPrice.toLocaleString("vi-VN") : 0
+                } đến ${maxPrice ? maxPrice.toLocaleString("vi-VN") : "vô cực"
+                } VNĐ</div>`
             );
             $("main.container").prepend(filterInfo);
             filterInfo.hide().fadeIn(500);
@@ -190,7 +193,7 @@ $(document).ready(function() {
     }
 
     // 5. Xử lý thêm vào giỏ hàng
-    $("main").on("click", ".add-to-cart", function() {
+    $("main").on("click", ".add-to-cart", function () {
         const card = $(this).closest(".product");
         const id = card.data("id");
         const product = products.find((p) => p.id === id);
@@ -255,7 +258,7 @@ $(document).ready(function() {
     });
 
     // 6. Xử lý tìm kiếm từ thanh tìm kiếm
-    $("#search-form").on("submit", function(e) {
+    $("#search-form").on("submit", function (e) {
         e.preventDefault();
         const kw = $("#search-input").val().trim().toLowerCase();
         localStorage.setItem("filterKeyword", kw);

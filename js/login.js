@@ -1,12 +1,9 @@
-// Hàm mã hóa mật khẩu
-function hashPassword(password) {
-  return CryptoJS.SHA256(password).toString();
-}
+const API_BASE_URL = "https://vn-authentic-be.onrender.com";
 
 // Hàm sanitize input để chống XSS
 function sanitizeInput(input) {
   return input.replace(/[<>&"']/g, function (m) {
-    return { "<": "<", ">": ">", "&": "&", '"': '"', "'": "'" }[m];
+    return { "<": "&lt;", ">": "&gt;", "&": "&amp;", '"': "&quot;", "'": "&#39;" }[m];
   });
 }
 
@@ -45,8 +42,8 @@ function showForgotPassword() {
   document.getElementById("forgot-password-form").classList.remove("d-none");
 }
 
-// Register function
-function register() {
+// Register function (gọi API)
+async function register() {
   const name = sanitizeInput(
     document.getElementById("register-name").value.trim()
   );
@@ -122,30 +119,34 @@ function register() {
     return;
   }
 
-  // Get users from LocalStorage
-  let users = JSON.parse(localStorage.getItem("users")) || [];
+  try {
+    const res = await fetch(API_BASE_URL + '/api/authentication/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, address, password }),
+    });
 
-  // Check if email already exists
-  if (users.some((user) => user.email === email)) {
-    document.getElementById("register-email").classList.add("is-invalid");
-    document.getElementById("register-email").nextElementSibling.textContent =
-      "Email này đã được đăng ký.";
-    showMessage("Email này đã được đăng ký!", "danger");
-    return;
+    const data = await res.json();
+
+    if (res.ok) {
+      showMessage(data.message || 'Đăng ký thành công! Đang chuyển hướng...', 'success');
+      setTimeout(() => {
+        showLogin();
+      }, 1500);
+    } else {
+      showMessage(data.message || 'Đăng ký thất bại!', 'danger');
+      if (data.message && data.message.includes('đăng ký')) {
+        document.getElementById("register-email").classList.add("is-invalid");
+        document.getElementById("register-email").nextElementSibling.textContent = data.message;
+      }
+    }
+  } catch (error) {
+    showMessage('Lỗi kết nối tới server', 'danger');
   }
-
-  // Save new user with hashed password
-  users.push({ name, email, address, password: hashPassword(password) });
-  localStorage.setItem("users", JSON.stringify(users));
-
-  showMessage("Đăng ký thành công! Đang chuyển hướng...", "success");
-  setTimeout(() => {
-    showLogin();
-  }, 1500);
 }
 
-// Login function
-function login() {
+// Login function (gọi API)
+async function login() {
   const email = document.getElementById("login-email").value.trim();
   const password = document.getElementById("login-password").value;
 
@@ -184,37 +185,40 @@ function login() {
     return;
   }
 
-  // Get users from LocalStorage
-  let users = JSON.parse(localStorage.getItem("users")) || [];
+  try {
+    const res = await fetch(API_BASE_URL + '/api/authentication/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
 
-  // Check credentials
-  const user = users.find(
-    (user) => user.email === email && user.password === hashPassword(password)
-  );
+    const data = await res.json();
 
-  if (user) {
-    showMessage(
-      "Đăng nhập thành công! Đang chuyển hướng về trang chủ...",
-      "success"
-    );
-    // Store logged-in user
-    localStorage.setItem("currentUser", JSON.stringify(user));
-    // Redirect to home page
-    setTimeout(() => {
-      window.location.replace("index.html");
-    }, 1500);
-  } else {
-    document.getElementById("login-email").classList.add("is-invalid");
-    document.getElementById("login-password").classList.add("is-invalid");
-    document.getElementById("login-email").nextElementSibling.textContent =
-      "Thông tin không hợp lệ.";
-    document.getElementById("login-password").nextElementSibling.textContent =
-      "Thông tin không hợp lệ.";
-    showMessage("Email hoặc mật khẩu không đúng!", "danger");
+    if (res.ok) {
+      showMessage(data.message || 'Đăng nhập thành công! Đang chuyển hướng...', 'success');
+
+      if (data.user) {
+        localStorage.setItem("currentUser", JSON.stringify(data.user));
+      }
+
+      setTimeout(() => {
+        window.location.replace("index.html");
+      }, 1500);
+    } else {
+      document.getElementById("login-email").classList.add("is-invalid");
+      document.getElementById("login-password").classList.add("is-invalid");
+      document.getElementById("login-email").nextElementSibling.textContent =
+        data.message || "Thông tin không hợp lệ.";
+      document.getElementById("login-password").nextElementSibling.textContent =
+        data.message || "Thông tin không hợp lệ.";
+      showMessage(data.message || "Email hoặc mật khẩu không đúng!", "danger");
+    }
+  } catch (error) {
+    showMessage('Lỗi kết nối tới server', 'danger');
   }
 }
 
-// Social login simulation
+// Social login simulation (giữ nguyên hoặc chỉnh sửa gọi API nếu muốn)
 function socialLogin(provider) {
   const email = prompt(`Nhập email để mô phỏng đăng nhập với ${provider}:`);
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -222,39 +226,24 @@ function socialLogin(provider) {
     return;
   }
 
-  // Get users from LocalStorage
-  let users = JSON.parse(localStorage.getItem("users")) || [];
-
-  // Check if user exists
-  let user = users.find((user) => user.email === email);
-
-  if (!user) {
-    // Simulate new user registration
-    user = {
-      name: `User_${provider}`,
-      email,
-      address: "",
-      password: hashPassword(`${provider}_default`),
-    };
-    users.push(user);
-    localStorage.setItem("users", JSON.stringify(users));
-  }
-
+  // Chỗ này giữ nguyên hoặc có thể gọi API tùy server bạn hỗ trợ
   showMessage(
     `Đăng nhập với ${provider} thành công! Đang chuyển hướng...`,
     "success"
   );
-  localStorage.setItem("currentUser", JSON.stringify(user));
+  localStorage.setItem(
+    "currentUser",
+    JSON.stringify({ name: `User_${provider}`, email, address: "" })
+  );
   setTimeout(() => {
     window.location.replace("index.html");
   }, 1500);
 }
 
-// Reset password simulation
-function resetPassword() {
+// Reset password simulation (gọi API)
+async function resetPassword() {
   const email = document.getElementById("forgot-email").value.trim();
 
-  // Reset lỗi
   document.getElementById("forgot-email").classList.remove("is-invalid");
   document.getElementById("forgot-email").nextElementSibling.textContent = "";
 
@@ -266,23 +255,28 @@ function resetPassword() {
     return;
   }
 
-  // Get users from LocalStorage
-  let users = JSON.parse(localStorage.getItem("users")) || [];
+  try {
+    const res = await fetch(API_BASE_URL + '/api/authentication/reset-password', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email }),
+    });
 
-  // Check if email exists
-  if (users.some((user) => user.email === email)) {
-    showMessage(
-      "Yêu cầu đặt lại mật khẩu đã được gửi! (Mô phỏng: kiểm tra email của bạn.)",
-      "success"
-    );
-    setTimeout(() => {
-      showLogin();
-    }, 1500);
-  } else {
-    document.getElementById("forgot-email").classList.add("is-invalid");
-    document.getElementById("forgot-email").nextElementSibling.textContent =
-      "Email không tồn tại.";
-    showMessage("Email không tồn tại!", "danger");
+    const data = await res.json();
+
+    if (res.ok) {
+      showMessage(data.message || "Yêu cầu đặt lại mật khẩu đã được gửi! (Mô phỏng)", "success");
+      setTimeout(() => {
+        showLogin();
+      }, 1500);
+    } else {
+      document.getElementById("forgot-email").classList.add("is-invalid");
+      document.getElementById("forgot-email").nextElementSibling.textContent =
+        data.message || "Email không tồn tại.";
+      showMessage(data.message || "Email không tồn tại!", "danger");
+    }
+  } catch (error) {
+    showMessage('Lỗi kết nối tới server', 'danger');
   }
 }
 
