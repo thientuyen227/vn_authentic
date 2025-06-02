@@ -1,3 +1,5 @@
+const API_BASE_URL = "https://vn-authentic-be.onrender.com/api";
+
 $(document).ready(function () {
     let products = [];
 
@@ -196,8 +198,6 @@ $(document).ready(function () {
     $("main").on("click", ".add-to-cart", function () {
         const card = $(this).closest(".product");
         const id = card.data("id");
-        const product = products.find((p) => p.id === id);
-        if (!product) return alert("Sản phẩm không hợp lệ.");
 
         // Lấy lựa chọn color / size (nếu có)
         const colorEl = card.find(".color-select");
@@ -215,47 +215,56 @@ $(document).ready(function () {
 
         // Lấy thông tin người dùng
         const user = JSON.parse(localStorage.getItem("currentUser"));
-        console.log("🔍 Current User:", user); // Debug
         if (!user || !user.email) {
             alert("Vui lòng đăng nhập để thêm vào giỏ hàng!");
             window.location.href = "login.html";
             return;
         }
 
-        // Chuẩn bị đối tượng item
-        const item = {
-            id: product.id,
-            name: product.name,
-            price: parsePrice(product.price),
-            image: product.image,
-            color: color,
-            size: size,
-            quantity: 1,
-        };
+        // Gọi API để lấy thông tin sản phẩm
+        $.ajax({
+            url: `${API_BASE_URL}/products/${id}`,
+            method: "GET",
+            dataType: "json",
+            success: function (product) {
+                if (!product) {
+                    alert("Sản phẩm không tồn tại!");
+                    return;
+                }
 
-        // Lấy cart hiện tại với key dựa trên email người dùng
-        const cartKey = `cart_${user.email}`;
-        console.log("🔍 Cart Key:", cartKey); // Debug
-        let cart = JSON.parse(localStorage.getItem(cartKey)) || [];
+                const cartItem = {
+                    productId: product.id,
+                    name: product.name,
+                    price: parsePrice(product.price),
+                    image: product.image,
+                    color: color,
+                    size: size,
+                    quantity: 1,
+                };
 
-        // Kiểm tra xem đã có item (same id + same color + same size) chưa
-        const idx = cart.findIndex(
-            (i) => i.id === item.id && i.color === item.color && i.size === item.size
-        );
-
-        if (idx > -1) {
-            // Nếu đã có, cộng dồn số lượng
-            cart[idx].quantity += 1;
-        } else {
-            // Nếu chưa có, thêm mới
-            cart.push(item);
-        }
-
-        // Lưu lại vào localStorage
-        localStorage.setItem(cartKey, JSON.stringify(cart));
-        console.log("🔍 Cart sau khi thêm:", cart); // Debug
-        alert("Đã thêm vào giỏ hàng!");
+                // Gọi API POST để thêm/cập nhật vào giỏ hàng
+                $.ajax({
+                    url: `${API_BASE_URL}/cart/item`,
+                    method: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify(cartItem),
+                    headers: {
+                        authorization: user.email, // Dùng email như token giả lập
+                    },
+                    success: function () {
+                        alert("Đã thêm sản phẩm vào giỏ hàng!");
+                    },
+                    error: function () {
+                        alert("Lỗi khi thêm sản phẩm vào giỏ hàng!");
+                    },
+                });
+            },
+            error: function () {
+                alert("Lỗi khi lấy dữ liệu sản phẩm!");
+            },
+        });
     });
+
 
     // 6. Xử lý tìm kiếm từ thanh tìm kiếm
     $("#search-form").on("submit", function (e) {
